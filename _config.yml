@@ -1,13 +1,24 @@
-plugins:
-  - jekyll-remote-theme
-
-remote_theme: BDHU/minimalist
-color-scheme: dark
-
-logo: /assets/img/logo.jpg
+name: "Dylan Crees"
 title: "Dylan Crees"
-blank_title: true
+description: "I'm just a little bee 🐝"
+
+github_username: drcrees
+linkedin_username: dylan-crees
+facebook_username: drcrees
+steam_username: randosityDotNet
 email: dylan@crees.io
+
+avatar: yes
+avatar_img_path: https://avatars.githubusercontent.com/u/11447165
+
+front_img: yes
+front_img_path: assets/img/carina_nebula.jpg
+
+favicon_img: yes
+favicon_img_path: assets/img/favicon.ico
+
+markdown: kramdown
+permalink: pretty
 
 exclude:
   - README.md

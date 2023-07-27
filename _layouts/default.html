@@ -1,66 +1,121 @@
-{% case site.color-scheme %}
-  {% when "", nil, false, 0, empty %}
-    {% assign ColorScheme = "auto" %}
-  {% else %}
-    {% assign ColorScheme = site.color-scheme %}
-{% endcase %}
-
+---
+permalink: /
+---
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="{{ site.description }}">
+        <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+        {% if site.favicon_img %}
+        <link rel="shortcut icon" href="{{ site.favicon_img_path }}" />
+        {% endif %}
+        <link rel="stylesheet" href="{{ "css/front.css" | prepend: site.baseurl }}">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="content">
+            {% if site.front_img %}
+            <img src="{{ site.front_img_path }}" id="fullscreen">
+            {% endif %}
 
-{% seo %}
-    <link rel="stylesheet" href="{{ "/assets/css/colors-ColorScheme.css?v=" | replace: "ColorScheme", ColorScheme | append: site.github.build_revision | relative_url }}">
-    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+            {% if site.avatar %}
+                <img src="{{ site.avatar_img_path }}" id="avatar">
+            {% endif %}
 
-    <link rel="preload" href="{{site.logo | relative_url}}" as="image">
-    <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <![endif]-->
-    {% include head-custom.html %}
-  </head>
-  <body>
-    <div class="wrapper">
-      <div class="sidebar">
-        <header>
-          {% if site.logo %}
-            <img class="img-circle" src="{{site.logo | relative_url}}" alt="Logo">
-          {% endif %}
+            <h1>{{ site.name }}</h1>
+            <h3>{{ site.description }}</h3>
 
-          {% if site.blank_title %}
-            <h2>{{ site.title | default: site.github.repository_name }}</h2>
-          {% else %}
-            <h2><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h2>
-          {% endif %}
+                <ul>
+                    {% if site.github_username %}
+                    <li><a class="fa fa-2x fa-github" href="https://github.com/{{ site.github_username }}"><span class="description">GitHub</span></a></li>
+                    {% endif %}
 
-          {% if site.email %}
-            <p class="addr"><i class="fa-regular fa-envelope"></i>&nbsp;{{ site.email }}</p>
-          {% endif %}
+                    {% if site.codepen_username %}
+                    <li><a class="fa fa-2x fa-codepen" href="https://codepen.io/{{ site.codepen_username }}"><span class="description">CodePen</span></a></li>
+                    {% endif %}
 
-          <p>{{ site.description | default: site.github.project_tagline }}</p>
+                    {% if site.facebook_username %}
+                    <li><a class="fa fa-2x fa-facebook" href="https://facebook.com/{{ site.facebook_username }}"><span class="description">Facebook</span></a></li>
+                    {% endif %}
 
-          {% include sidebar.html %}
+                    {% if site.vk_username %}
+                    <li><a class="fa fa-2x fa-vk" href="https://vk.com/{{ site.vk_username }}"><span class="description">ВКонтакте</span></a></li>
+                    {% endif %}
 
-        </header>
+                    {% if site.twitter_username %}
+                    <li><a class="fa fa-2x fa-twitter" href="https://twitter.com/{{ site.twitter_username }}"><span class="description">Twitter</span></a></li>
+                    {% endif %}
 
-        {% include links-mobile.html %}
+                    {% if site.google_plus_username %}
+                    <li><a class="fa fa-2x fa-google-plus" href="https://plus.google.com/+{{ site.google_plus_username }}"><span class="description">Google +</span></a></li>
+                    {% endif %}
 
-        <div class="sidebar-footer">
-          {%- include footer.html -%}
+                    {% if site.linkedin_username %}
+                    <li><a class="fa fa-2x fa-linkedin" href="https://linkedin.com/in/{{ site.linkedin_username }}"><span class="description">LinkedIn</span></a></li>
+                    {% endif %}
+
+                    {% if site.vine_username %}
+                    <li><a class="fa fa-2x fa-vine" href="https://vine.co/{{ site.vine_username }}"><span class="description">Vine</span></a></li>
+                    {% endif %}
+
+                    {% if site.instagram_username %}
+                    <li><a class="fa fa-2x fa-instagram" href="https://instagram.com/{{ site.instagram_username }}"><span class="description">Instagram</span></a></li>
+                    {% endif %}
+
+                    {% if site.flickr_usernmae %}
+                    <li><a class="fa fa-2x fa-flickr" href="https://flickr.com/photos/{{ site.flickr_username }}"><span class="description">Flickr</span></a></li>
+                    {% endif %}
+
+                    {% if site.steam_username %}
+                    <li><a class="fa fa-2x fa-steam" href="http://steamcommunity.com/id/{{ site.steam_username }}"><span class="description">Steam</span></a></li>
+                    {% endif %}
+
+                    {% if site.soundcloud_username %}
+                    <li><a class="fa fa-2x fa-soundcloud" href="https://soundcloud.com/{{ site.soundcloud_username }}"><span class="description">Soundcloud</span></a></li>
+                    {% endif %}
+
+                    {% if site.lastfm_username %}
+                    <li><a class="fa fa-2x fa-lastfm" href="http://www.last.fm/user/{{ site.lastfm_username }}"><span class="description">Last.fm</span></a></li>
+                    {% endif %}
+
+                    {% if site.stack_of_username %}
+                    <li><a class="fa fa-2x fa-stack-overflow" href="https://stackoverflow.com/users/{{ site.stack_of_username }}"><span class="description">Stack OF</span></a></li>
+                    {% endif %}
+
+                    {% if site.reddit_username %}
+                    <li><a class="fa fa-2x fa-reddit" href="https://reddit.com/user/{{ site.reddit_username }}"><span class="description">Reddit</span></a></li>
+                    {% endif %}
+
+                    {% if site.medium_username %}
+                    <li><a class="fa fa-2x fa-medium" href="https://medium.com/@{{ site.medium_username }}"><span class="description">Medium</span></a></li>
+                    {% endif %}
+
+                    {% if site.tumblr_username %}
+                    <li><a class="fa fa-2x fa-tumblr" href="https://{{ site.tumblr_username }}.tumblr.com/"><span class="description">Tumblr</span></a></li>
+                    {% endif %}
+
+                    {% if site.weibo_username %}
+                    <li><a class="fa fa-2x fa-weibo" href="https://weibo.com/{{ site.weibo_username }}"><span class="description">微博</span></a></li>
+                    {% endif %}
+
+                    {% if site.blog_url %}
+                    <li><a class="fa fa-2x fa-tags" href="{{ site.baseurl }}{{ site.blog_url }}"><span class="description">Blog</span></a></li>
+                    {% endif %}
+
+                    {% if site.email %}
+                    <li><a class="fa fa-2x fa-envelope" href="mailto:{{ site.email }}"><span class="description">Email</span></a></li>
+                    {% endif %}
+
+                    {% if site.public_key_url %}
+                    <li><a class="fa fa-2x fa-key" href="{{ site.public_key_url }}"><span class="description">PGP Key</span></a></li>
+                    {% endif %}
+                </ul>
         </div>
-      </div>
-      <section>
 
-      {{ content }}
-
-      </section>
-      <footer>
-        {%- include footer.html -%}
-      </footer>
-    </div>
-    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
-  </body>
+    </body>
 </html>
