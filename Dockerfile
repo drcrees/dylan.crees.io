@@ -5,7 +5,7 @@ RUN apk add --no-cache build-base git
 WORKDIR /site
 
 COPY . .
-RUN bundle install
+RUN gem install bundler && bundle install
 
 EXPOSE 8080
 

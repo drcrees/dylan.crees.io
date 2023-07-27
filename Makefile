@@ -5,4 +5,4 @@ local:
 	docker run -it --rm -p 8080:8080 -v $$PWD:/site dylan.crees.io/site
 
 local-clean:
-	rm -rf _site .jekyll-cache .sass-cache Gemfile.lock
+	rm -rf _site Gemfile.lock
